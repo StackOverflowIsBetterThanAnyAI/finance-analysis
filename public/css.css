@@ -1,0 +1,298 @@
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    background-image: linear-gradient(120deg, hwb(145 0% 0% / 0.562), #fa0ce6b7);
+}
+
+html,
+body {
+    width: 100%;
+    min-width: 412px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.information {
+    color: #333;
+    padding-top: 32px;
+    padding-left: 32px;
+    margin-top: 32px;
+    margin-left: 128px;
+    text-align: left;
+    background-color: white;
+    padding-right: 16px;
+    margin-right: 40%;
+    padding-bottom: 32px;
+    margin-bottom: 5%;
+    border-radius: 8px;
+}
+
+.info-text {
+    text-align: left;
+    border-radius: 8px;
+}
+
+h3 {
+    color: #333;
+}
+
+h4 {
+    color: #333;
+}
+
+h5 {
+    color: #333;
+}
+
+h6 {
+    color: #333;
+}
+
+canvas {
+    margin-bottom: 5%;
+}
+
+#chartStats,
+#chartTransacts,
+#chartPerformnc {
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    padding-top: 128px;
+    margin-top: -128x;
+}
+
+.fat {
+    font-weight: 600;
+}
+
+.chartStatisticsContainer {
+    width: 90%;
+    margin-top: 64px;
+    overflow: auto;
+}
+
+.chartPerformanceContainer {
+    width: 90%;
+    overflow: auto;
+}
+
+.chartTransactionsContainer {
+    width: 90%;
+    overflow: auto;
+}
+
+#chartStats,
+#chartPerformnc {
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#chartTransacts {
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-bottom: 32px;
+}
+
+.info-text {
+    background-color: rgba(250, 250, 250, 0.5);
+    padding: 8px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.navbar {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+}
+
+.brandName {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+}
+
+.navbarLinks ul {
+    display: flex;
+}
+
+.navbarLinks li {
+    list-style: none;
+}
+
+.navbarLinks li a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    display: block;
+}
+
+.navbarLinks li:hover {
+    background-color: #555;
+    border-radius: 8px;
+}
+
+.toggleButton {
+    position: absolute;
+    top: 0.75 rem;
+    right: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50px;
+    height: 25px;
+    display: none;
+}
+
+.toggleButton .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#pictatistics,
+#picportfolio,
+#pictransactions {
+    padding-left: 32px;
+    padding-bottom: 4px;
+}
+
+tfoot {
+    background-color: rgb(116, 116, 116);
+    color: rgb(250, 250, 250);
+}
+
+footer {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.75);
+    color: #172029;
+    box-shadow: 0px 0px 20px 0px rgba(92, 92, 92, 0.2);
+}
+
+.footera {
+    margin-left: 20px;
+}
+
+.hover {
+    --b: 0.1em;
+    --c: #1095c1;
+    color: #333;
+    padding-block: var(--b);
+    background:
+        linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
+        linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s));
+}
+
+.hover:hover {
+    --_p: 100%;
+    --_s: .3s;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px lightgrey;
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+@media(max-width: 780px) {
+    .information h4 {
+        display: none;
+    }
+
+    .information h3 {
+        display: none;
+    }
+
+    .toggleButton {
+        display: flex;
+    }
+
+    .navbarLinks {
+        width: 100%;
+        display: none;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbarLinks ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbarLinks li {
+        text-align: center;
+    }
+
+    .navbarLinks li a {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbarLinks.active {
+        display: flex;
+    }
+
+    .information {
+        margin-bottom: 15%;
+    }
+
+    .container {
+        padding-top: 60%;
+        margin-top: -60%;
+    }
+
+    #pictatistics,
+    #picportfolio,
+    #pictransactions {
+        display: none;
+    }
+
+    canvas {
+        margin-bottom: 15%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        resize: none;
+    }
+}
