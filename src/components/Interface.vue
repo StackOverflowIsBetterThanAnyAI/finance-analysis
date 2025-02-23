@@ -43,14 +43,7 @@
         <h6>[from {{ startEndDate[0] }} to {{ startEndDate[1] }}]</h6>
       </div>
       <table
-        class="
-          table table-bordered
-          border-info
-          table-info table-hover table-striped
-          mt-4
-          caption-top
-          table-responsive
-        "
+        class="table table-bordered border-info table-info table-hover table-striped mt-4 caption-top table-responsive"
         style="--bs-border-opacity: 0.5"
       >
         <caption>
@@ -94,14 +87,7 @@
         <h6>[This is the status as of {{ startEndDate[1] }}].</h6>
       </div>
       <table
-        class="
-          table table-bordered
-          border-info
-          table-light table-hover table-striped
-          mt-4
-          caption-top
-          table-responsive
-        "
+        class="table table-bordered border-info table-light table-hover table-striped mt-4 caption-top table-responsive"
         style="--bs-border-opacity: 0.5"
       >
         <caption>
@@ -173,14 +159,7 @@
         </h6>
       </div>
       <table
-        class="
-          table table-bordered
-          border-info
-          table-light table-hover table-striped
-          mt-4
-          caption-top
-          table-responsive
-        "
+        class="table table-bordered border-info table-light table-hover table-striped mt-4 caption-top table-responsive"
         style="--bs-border-opacity: 0.5"
       >
         <caption>
@@ -325,31 +304,20 @@ export default {
   name: "MyInterface",
 
   methods: {
-    //actually unnecessary now, because there is no update button
-    update: function () {
-      this.fetchValues();
-      this.fetchStatistics();
-      this.fetchTransactions();
-    },
-
     //fetch Data from API: Values := Portfolio
     async fetchValues() {
       const urlValue =
         "https://robowm.aixigo.com:443/analytics/portfolio/values?when=2022-11-17&aggregation=POSITION&contractSet=NONE&contract=DemoContract0001&externalValuations=NONE&useLatestValuations=false&includePendingOrders=false";
       const headersValue = {
-        Authorization:
-          "Bearer eyAiYWxnIjogIlJTMjU2IiwidHlwIjogIkpXVCIsICJraWQiOiAiUGNhZnVYWldidmJNZUNFbDBJLXpFU0ZFejc0aVBuRGIxNUNTNGlHdFIwUSJ9.eyJzdWIiOiAiNDYzMGZiMDctNzYyMy00YWE3LThiOTEtMGJmZWNmN2JhYTNlIiwgIm5hbWUiOiAiQVBJIFVzZXIiLCAidGVuYW50IjogImNlbnRyYWwiLCAicm9sZXMiOiBbICJBUElfVVNFUiIgXSwgImlzcyI6ICJodHRwczovL29wZW5pZC1yb2Jvd20uYWl4aWdvLmNvbTo0NDMiLCJleHAiOiAxODkzNDU2MDAwLCAiYXVkIjogImFpeGNsaWVudCIsICJpYXQiOiAxNjE5Nzg0OTY5fQ.nsO7PlSunQhTc7vVC1_CPIHrtHRAZse3QuPKp-V1yVeSeI43JV5MRc778UJHy22GEe7qh0W4I-MaCbymWsn8On-PLaY-DsnVMtpQQn9xiog11no-NY8Ae4on8LnWtkn_cw1dwV7agsF1ss2hbN6phS8aAXnvmtybvpChHwyXyeLZvOMuygC8Wbo1SNp1IOJXmtPPwVgviThoOjvkH8CYK3ET2ovl97Ws7Vvw5DHoHJcGkhZ0HpYEsmsosyIwECfr8BSxoqQMnnLBzL6Ul2-lVA9JO5xfRd2vEyKPI5g-jEzi81th65-LIEX-9oji8OyKaVN6Topm3EH0rjFHbdqL1YRcX92wscNCAWrD1RqBxKHxYO9gsjDxcsKz7GUdT8O8AQXhyyWwmuDgOZkixIYwR8UkO7DR_k5aKovja9YiRjF8mHQ-_QRCyNbyidiyQrvOpjWyNhmz2I1oqk8BuPiup4IdSofd8KHa160KOGsPJT1IKqPOlrN613h_s5IMHh9dllHp4K8uKME43MDq8e-E936UiSRoR4Ato4Augdfo5IwiKarh2_nRLfFD8RBXGdK1wLEwpGwq5R_7wqDfviLPq-sCBs5EkHfgrJwlu1uhRVG-YOACKEJu1SJ59stB_qQexiiZZ7EmAvpFKeaIUKwHBR5c6i9LK9FI9NNUCMe85xY",
+        Authorization: "Bearer API_KEY",
       };
       const responseValue = await fetch(urlValue, {
         headers: headersValue,
       });
 
-      //console.log("responseValue", responseValue);
       const responseJsonValue = await responseValue.json();
-      //console.log("json Value", responseJsonValue);
 
       this.holdings = responseJsonValue.holdings;
-      //console.log("holdings", this.holdings);
 
       //calculation the Total Quantity
       let totalQuantity = 0;
@@ -366,14 +334,12 @@ export default {
         this.valueAssetId[i] =
           responseJsonValue.holdings[i].holdingId.ASSET_SHORT_NAME;
       }
-      //console.log("initializing: ", this.valueAssetId);
 
       //Array that contains the Values
       for (let i = 0; i < responseJsonValue.holdings.length; i++) {
         this.valueValueData[i] =
           responseJsonValue.holdings[i].value.amount.toFixed(2);
       }
-      //console.log("initializing: ", this.valueValueData);
     },
 
     //fetch Data from API: Statistics:= Performance
@@ -382,18 +348,13 @@ export default {
       const urlStatistics =
         "https://robowm.aixigo.com:443/analytics/portfolio/value-statistics?begin=2015-01-01&end=2019-12-31&restriction=NONE&aggregation=CONTRACT&contractSet=NONE&contract=DemoContract0001&includePendingOrders=false";
       const headersStatistics = {
-        Authorization:
-          "Bearer eyAiYWxnIjogIlJTMjU2IiwidHlwIjogIkpXVCIsICJraWQiOiAiUGNhZnVYWldidmJNZUNFbDBJLXpFU0ZFejc0aVBuRGIxNUNTNGlHdFIwUSJ9.eyJzdWIiOiAiNDYzMGZiMDctNzYyMy00YWE3LThiOTEtMGJmZWNmN2JhYTNlIiwgIm5hbWUiOiAiQVBJIFVzZXIiLCAidGVuYW50IjogImNlbnRyYWwiLCAicm9sZXMiOiBbICJBUElfVVNFUiIgXSwgImlzcyI6ICJodHRwczovL29wZW5pZC1yb2Jvd20uYWl4aWdvLmNvbTo0NDMiLCJleHAiOiAxODkzNDU2MDAwLCAiYXVkIjogImFpeGNsaWVudCIsICJpYXQiOiAxNjE5Nzg0OTY5fQ.nsO7PlSunQhTc7vVC1_CPIHrtHRAZse3QuPKp-V1yVeSeI43JV5MRc778UJHy22GEe7qh0W4I-MaCbymWsn8On-PLaY-DsnVMtpQQn9xiog11no-NY8Ae4on8LnWtkn_cw1dwV7agsF1ss2hbN6phS8aAXnvmtybvpChHwyXyeLZvOMuygC8Wbo1SNp1IOJXmtPPwVgviThoOjvkH8CYK3ET2ovl97Ws7Vvw5DHoHJcGkhZ0HpYEsmsosyIwECfr8BSxoqQMnnLBzL6Ul2-lVA9JO5xfRd2vEyKPI5g-jEzi81th65-LIEX-9oji8OyKaVN6Topm3EH0rjFHbdqL1YRcX92wscNCAWrD1RqBxKHxYO9gsjDxcsKz7GUdT8O8AQXhyyWwmuDgOZkixIYwR8UkO7DR_k5aKovja9YiRjF8mHQ-_QRCyNbyidiyQrvOpjWyNhmz2I1oqk8BuPiup4IdSofd8KHa160KOGsPJT1IKqPOlrN613h_s5IMHh9dllHp4K8uKME43MDq8e-E936UiSRoR4Ato4Augdfo5IwiKarh2_nRLfFD8RBXGdK1wLEwpGwq5R_7wqDfviLPq-sCBs5EkHfgrJwlu1uhRVG-YOACKEJu1SJ59stB_qQexiiZZ7EmAvpFKeaIUKwHBR5c6i9LK9FI9NNUCMe85xY",
+        Authorization: "Bearer AI_KEY",
       };
       const responseStatistics = await fetch(urlStatistics, {
         headers: headersStatistics,
       });
 
-      //console.log("responseStatistics", responseStatistics);
-
       const responseJsonStatistics = await responseStatistics.json();
-
-      //console.log("json Statistics", responseJsonStatistics);
 
       //declaring Variables for the Performance Table
       const beginValue =
@@ -425,7 +386,6 @@ export default {
         maxValue.toFixed(2),
         endValue.toFixed(2)
       );
-      //console.log("initialzing notall...", this.notAllHoldingsStatistics);
 
       //start and end Date for some statistical Information displayed in text
       let startDate = 0;
@@ -433,27 +393,20 @@ export default {
         let startPos = urlStatistics.indexOf("begin");
         startDate = urlStatistics.slice(startPos + 6, startPos + 16);
       }
-      //startDate = startDate.toString().split("-").reverse().join(".");
       startDate = startDate.toString().split("-").join("/");
-      //console.log(startDate);
 
       let endDate = 0;
       if (urlStatistics.includes("end")) {
         let endPos = urlStatistics.indexOf("end");
         endDate = urlStatistics.slice(endPos + 4, endPos + 14);
       }
-      //endDate = endDate.toString().split("-").reverse().join(".");
       endDate = endDate.toString().split("-").join("/");
-      //console.log(endDate);
 
       this.startEndDate.push(startDate, endDate);
 
       for (let i = 0; i < this.notAllHoldingsStatistics.length; i++) {
         this.averageholdingsStatistics[i] = averageValue.toFixed(2);
       }
-      //console.log(this.averageholdingsStatistics);
-
-      //console.log("holdingsStatistics: ", this.holdingsStatistics);
     },
 
     //fetch Data from API: transactions
@@ -462,23 +415,17 @@ export default {
         "https://robowm.aixigo.com:443/analytics/portfolio/transactions?begin=2015-01-01&end=2019-12-31&restriction=NONE&aggregation=ALL&contractSet=NONE&contract=DemoContract0001&selection=TRANSACTIONS&includePendingOrders=false";
 
       const headersTransactions = {
-        Authorization:
-          "Bearer eyAiYWxnIjogIlJTMjU2IiwidHlwIjogIkpXVCIsICJraWQiOiAiUGNhZnVYWldidmJNZUNFbDBJLXpFU0ZFejc0aVBuRGIxNUNTNGlHdFIwUSJ9.eyJzdWIiOiAiNDYzMGZiMDctNzYyMy00YWE3LThiOTEtMGJmZWNmN2JhYTNlIiwgIm5hbWUiOiAiQVBJIFVzZXIiLCAidGVuYW50IjogImNlbnRyYWwiLCAicm9sZXMiOiBbICJBUElfVVNFUiIgXSwgImlzcyI6ICJodHRwczovL29wZW5pZC1yb2Jvd20uYWl4aWdvLmNvbTo0NDMiLCJleHAiOiAxODkzNDU2MDAwLCAiYXVkIjogImFpeGNsaWVudCIsICJpYXQiOiAxNjE5Nzg0OTY5fQ.nsO7PlSunQhTc7vVC1_CPIHrtHRAZse3QuPKp-V1yVeSeI43JV5MRc778UJHy22GEe7qh0W4I-MaCbymWsn8On-PLaY-DsnVMtpQQn9xiog11no-NY8Ae4on8LnWtkn_cw1dwV7agsF1ss2hbN6phS8aAXnvmtybvpChHwyXyeLZvOMuygC8Wbo1SNp1IOJXmtPPwVgviThoOjvkH8CYK3ET2ovl97Ws7Vvw5DHoHJcGkhZ0HpYEsmsosyIwECfr8BSxoqQMnnLBzL6Ul2-lVA9JO5xfRd2vEyKPI5g-jEzi81th65-LIEX-9oji8OyKaVN6Topm3EH0rjFHbdqL1YRcX92wscNCAWrD1RqBxKHxYO9gsjDxcsKz7GUdT8O8AQXhyyWwmuDgOZkixIYwR8UkO7DR_k5aKovja9YiRjF8mHQ-_QRCyNbyidiyQrvOpjWyNhmz2I1oqk8BuPiup4IdSofd8KHa160KOGsPJT1IKqPOlrN613h_s5IMHh9dllHp4K8uKME43MDq8e-E936UiSRoR4Ato4Augdfo5IwiKarh2_nRLfFD8RBXGdK1wLEwpGwq5R_7wqDfviLPq-sCBs5EkHfgrJwlu1uhRVG-YOACKEJu1SJ59stB_qQexiiZZ7EmAvpFKeaIUKwHBR5c6i9LK9FI9NNUCMe85xY",
+        Authorization: "Bearer API_KEY",
       };
 
       const responseTransactions = await fetch(urlTransactions, {
         headers: headersTransactions,
       });
 
-      //console.log("responseTransactions", responseTransactions);
-
       const responseJsonTransactions = await responseTransactions.json();
-
-      //console.log("json Transactions", responseJsonTransactions);
 
       //Data for Transactions Chart: Transaction Type
       this.transactions = responseJsonTransactions.holdings[0].transactions;
-      //console.log("transactions", this.transactions);
 
       //Transactions Array with Name Tags
       for (let i = 0; i < this.transactions.length; i++) {
@@ -496,7 +443,6 @@ export default {
             .replace("KTO", "ACC")
             .slice(5, 15);
       }
-      //console.log("initializing: ", this.transactionsNameTags);
 
       //Transactions Array with the Values
       for (let i = 0; i < this.transactions.length; i++) {
@@ -505,7 +451,6 @@ export default {
             i
           ].actualAmount.amount;
       }
-      //console.log("initializing: ", this.transactionsValuesData);
     },
   },
 
@@ -534,7 +479,6 @@ export default {
     this.$nextTick(this.fetchValues);
     this.$nextTick(this.fetchStatistics);
     this.$nextTick(this.fetchTransactions);
-    //window.dispatchEvent(new Event('resize'));
     //Charts are rendered after x ms
     setTimeout(function () {
       chartStatistics.update();
@@ -549,7 +493,6 @@ export default {
     //Statistics Chart
     let dataProxyStatistics = this.notAllHoldingsStatistics;
     let statisticsData = toRaw(dataProxyStatistics);
-    //console.log("Stats: ", statisticsData);
     const chartLabel = "Value Statistics";
     const ctxStatistics = document.getElementById("chartStats");
     const chartStatistics = new Chart(ctxStatistics, {
@@ -592,7 +535,6 @@ export default {
     //Performance Chart
     let dataProxyPerformance = this.valueValueData;
     let performanceData = toRaw(dataProxyPerformance);
-    //console.log("Stats: ", performanceData);
     const chartLabelPerformance = "Value [EUR]";
     const ctxPerformance = document.getElementById("chartPerformnc");
     const chartPerformance = new Chart(ctxPerformance, {
@@ -629,7 +571,6 @@ export default {
     //Transactions Chart
     let dataProxyTransactions = this.transactionsValuesData;
     let transactionsData = toRaw(dataProxyTransactions);
-    //console.log("Stats: ", transactionsData);
     const chartLabelTransactions = "Transactions";
     const ctxTransactions = document.getElementById("chartTransacts");
     const chartTransactions = new Chart(ctxTransactions, {
